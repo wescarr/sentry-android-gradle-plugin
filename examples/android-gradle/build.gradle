@@ -6,18 +6,22 @@ buildscript {
 
     dependencies {
         classpath Libs.AGP
-        classpath "io.sentry:sentry-android-gradle-plugin"
+//        classpath "io.sentry:sentry-android-gradle-plugin"
     }
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'io.sentry.android.gradle'
+//apply plugin: 'io.sentry.android.gradle'
+
+repositories {
+    mavenLocal()
+}
 
 android {
-    compileSdkVersion = 30
+    compileSdkVersion = 32
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 32
         versionCode = 1
         versionName = "1.0"
     }
@@ -30,10 +34,16 @@ android {
     }
 }
 
-sentry {
-    autoUploadProguardMapping = CI.INSTANCE.canAutoUpload()
+//sentry {
+//    autoUploadProguardMapping = CI.INSTANCE.canAutoUpload()
+//
+//    tracingInstrumentation {
+//        enabled = false
+//    }
+//
+//    autoInstallation.enabled = false
+//}
 
-    tracingInstrumentation {
-        enabled = false
-    }
+dependencies {
+    implementation "io.sentry:sentry-android:6.0.0"
 }
